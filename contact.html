@@ -107,9 +107,11 @@
     <h2>Votre demande</h2>
     <p class="sub">Remplissez ce formulaire et recevez votre proposition tarifaire personnalisée sous 2 heures ouvrées.</p>
 
-    <form id="leadovi-form" name="contact-pro" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
-      <input type="hidden" name="form-name" value="contact-pro"/>
-      <p hidden><input name="bot-field"/></p>
+    <form id="leadovi-form" name="contact-pro" action="https://api.web3forms.com/submit" method="POST">
+      <!-- Web3Forms : sujet du mail reçu + anti-spam (honeypot botcheck). La clé access_key est injectée par web3forms-key.js -->
+      <input type="hidden" name="subject" value="Nouveau lead LEADOVI — demande de devis"/>
+      <input type="hidden" name="from_name" value="Site LEADOVI"/>
+      <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off"/>
       <!-- ENTREPRISE -->
       <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--indigo);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border)">📁 Votre entreprise</div>
       <div class="form-row">
@@ -321,6 +323,7 @@
     <div class="footer-bottom"><span>© 2026 LEADOVI — Tous droits réservés</span><span>Plateforme réservée aux professionnels RGE</span></div>
   </div>
 </footer>
+<script src="web3forms-key.js"></script>
 <script src="components.js"></script>
 </body>
 </html>

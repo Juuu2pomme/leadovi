@@ -1,1 +1,4 @@
 .DS_Store
+
+# Clé Web3Forms — ne jamais versionner (vit uniquement sur le serveur)
+web3forms-key.js

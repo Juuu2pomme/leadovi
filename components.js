@@ -94,14 +94,38 @@ function initTicker(){
   inner.innerHTML += inner.innerHTML;
 }
 
-// ── Form submit
+// ── Form submit (Web3Forms → email)
 function initForm(){
   const form = document.getElementById('leadovi-form');
   if(!form) return;
-  form.addEventListener('submit', e=>{
+  const successEl = document.getElementById('form-success');
+  const btn = form.querySelector('button[type=submit]');
+  const origLabel = btn ? btn.textContent : '';
+
+  form.addEventListener('submit', async e=>{
     e.preventDefault();
-    form.style.display='none';
-    document.getElementById('form-success').style.display='block';
+    const data = new FormData(form);
+    const key = window.WEB3FORMS_ACCESS_KEY;
+    if(key){ data.append('access_key', key); }
+    else { console.error('[LEADOVI] Clé Web3Forms absente (web3forms-key.js) — envoi impossible.'); }
+
+    if(btn){ btn.disabled=true; btn.textContent='Envoi…'; }
+    try{
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method:'POST',
+        headers:{ 'Accept':'application/json' },
+        body:data
+      });
+      const json = await res.json();
+      if(!json.success) throw new Error(json.message || 'Échec de l’envoi');
+      form.style.display='none';
+      successEl.style.display='block';
+      successEl.scrollIntoView({ behavior:'smooth', block:'center' });
+    } catch(err){
+      console.error('[LEADOVI] Envoi du formulaire échoué :', err);
+      alert('Une erreur est survenue lors de l’envoi. Merci de réessayer, ou de nous écrire directement à contact@leadovi.fr.');
+      if(btn){ btn.disabled=false; btn.textContent=origLabel; }
+    }
   });
 }
 
