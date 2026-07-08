@@ -7,26 +7,25 @@ Tu peux le faire évoluer avec Claude sans être technique. Suis les 3 étapes c
 
 ## 🧑‍💻 Pour toi — comment travailler
 
-### Étape 1 — Donner le site à Claude
-1. Va sur **claude.ai**, ouvre un nouveau chat (ou un « Projet » si tu as Claude Pro, c'est encore mieux).
-2. **Glisse tous les fichiers de ce dossier dans le chat** (ou dans le Projet). Claude verra tout le site.
-3. Colle le **prompt de départ** ci-dessous.
+1. Va sur **claude.ai** et ouvre un nouveau chat.
+2. **Copie-colle le prompt de départ ci-dessous** (remplace la dernière ligne par ce que tu veux faire).
+3. Laisse-toi guider : Claude récupère le code, lit ce guide, puis t'aide pas à pas et te donne les fichiers modifiés à enregistrer.
+4. Quand c'est fini, Claude t'aide à **tout renvoyer à Julian par WeTransfer** (dossier complet, sans rien supprimer). Julian s'occupe de la mise en ligne — **toi, tu ne touches ni au serveur ni à GitHub.**
 
-### Étape 2 — Le prompt de départ (copie-colle ça à Claude)
+### Le prompt de départ (copie-colle ça à Claude)
 
-> Salut Claude ! Je ne suis pas technique. Je veux continuer à améliorer mon site web **LEADOVI**. Tu as accès à tous les fichiers du site.
+> Je vibe code ma landing page, leadovi.fr. Julian gère pour moi la partie GitHub et l'hébergement : je lui donne juste le code, il s'occupe du reste.
 >
-> **Avant tout : lis en entier le fichier `README.md`, surtout la section « 🤖 Contexte pour Claude ».** Elle contient les règles à respecter (comment le site est construit, ce qu'il ne faut pas casser, la charte de marque).
+> Voici l'URL GitHub du projet : https://github.com/Juuu2pomme/leadovi
+> Je veux continuer à améliorer mon site web LEADOVI.
 >
-> Ensuite, guide-moi **étape par étape, en langage simple, sans jargon**. Pose-moi des questions si besoin. Quand je te demande un changement, applique-le sur les bons fichiers, et **donne-moi le contenu complet de chaque fichier modifié, prêt à enregistrer** (en gardant le même nom de fichier).
+> Avant tout : lis en entier le fichier `README.md`, surtout la section « 🤖 Contexte pour Claude ». Elle contient les règles à respecter (comment le site est construit, ce qu'il ne faut pas casser, la charte de marque).
 >
-> Mon premier objectif : **[ÉCRIS ICI CE QUE TU VEUX FAIRE]**
-
-### Étape 3 — Enregistrer et renvoyer à Julian
-- Claude te donnera les fichiers modifiés → **enregistre-les dans le dossier en gardant exactement le même nom** (ex : `index.html` reste `index.html`).
-- **Garde tous les autres fichiers**, ne supprime rien.
-- Quand c'est prêt, **envoie le dossier complet à Julian par WeTransfer**, avec un petit mot de ce que tu as changé.
-- Julian s'occupe de la mise en ligne. **Ne t'occupe pas du serveur ni de GitHub.**
+> Ensuite, guide-moi étape par étape, en langage simple, sans jargon. Pose-moi des questions si besoin. Quand je te demande un changement, applique-le sur les bons fichiers et donne-moi le contenu complet de chaque fichier modifié, prêt à enregistrer (en gardant le même nom de fichier).
+>
+> Quand j'aurai fini, tu m'aideras à tout renvoyer à Julian (via WeTransfer).
+>
+> Dans un premier temps, aide-moi à récupérer tout le code : si tu peux accéder directement au projet via le lien GitHub, fais-le ; sinon, guide-moi pas à pas pour télécharger le dossier (sur GitHub : bouton vert « Code » → « Download ZIP »), le décompresser, et te transmettre les fichiers. Une fois que tu as bien tout le site sous les yeux, on commence.
 
 ---
 
