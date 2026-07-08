@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>LEADOVI — Leads Premium pour Professionnels de l'Énergie</title>
+<link rel="stylesheet" href="style.css"/>
+<style>
+@keyframes sli{from{opacity:0;transform:translateX(-12px)}to{opacity:1;transform:translateX(0)}}
+.dash-mock{background:var(--card);border:1px solid var(--border);border-radius:18px;overflow:hidden;box-shadow:0 0 80px rgba(91,71,251,0.1)}
+.dash-bar{background:var(--bg3);padding:11px 16px;display:flex;align-items:center;gap:7px;border-bottom:1px solid var(--border)}
+.db-dot{width:10px;height:10px;border-radius:50%}
+.dash-title{font-size:12px;color:var(--gray2);margin-left:6px;font-weight:600}
+.dash-live{margin-left:auto;display:flex;align-items:center;gap:5px;font-size:11px;color:var(--teal);font-weight:700}
+.dash-body{padding:14px}
+.dash-kpis{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:12px}
+.kpi{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:12px;text-align:center}
+.kpi-val{font-size:22px;font-weight:900;display:block}
+.kpi-label{font-size:10px;color:var(--gray);text-transform:uppercase;letter-spacing:.4px;margin-top:2px}
+.feed-header{background:var(--bg3);padding:9px 14px;font-size:11px;color:var(--gray);text-transform:uppercase;letter-spacing:.6px;display:flex;justify-content:space-between;border-radius:8px 8px 0 0;border:1px solid var(--border);border-bottom:none}
+#lead-feed{border:1px solid var(--border);border-top:none;border-radius:0 0 10px 10px;overflow:hidden;background:var(--card2)}
+.sector-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:768px){.sector-cards{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.sector-cards{grid-template-columns:1fr}}
+.sc{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px 20px;text-decoration:none;color:inherit;display:block;transition:all .3s;position:relative;overflow:hidden}
+.sc::after{content:'→';position:absolute;bottom:16px;right:18px;font-size:18px;color:var(--border2);transition:all .25s}
+.sc:hover{border-color:var(--border2);transform:translateY(-4px);box-shadow:0 16px 48px rgba(91,71,251,0.1)}
+.sc:hover::after{color:var(--indigo);right:14px}
+.sc-icon{font-size:30px;margin-bottom:12px}
+.sc-tag{display:inline-block;font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px}
+.sc h3{font-size:16px;font-weight:800;margin-bottom:5px}
+.sc p{font-size:12px;color:var(--gray2);line-height:1.6}
+.testi-wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;max-width:1140px;margin:0 auto}
+.testi{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:26px;transition:border-color .2s}
+.testi:hover{border-color:var(--border2)}
+.t-stars{color:#FBBF24;font-size:14px;letter-spacing:2px;margin-bottom:12px}
+.t-text{font-size:14px;color:var(--text);line-height:1.75;font-style:italic;margin-bottom:18px;opacity:.9}
+.t-author{display:flex;align-items:center;gap:12px;border-top:1px solid var(--border);padding-top:14px}
+.t-av{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex-shrink:0}
+.t-name{font-size:13px;font-weight:700}
+.t-role{font-size:11px;color:var(--gray)}
+.t-result{margin-left:auto;text-align:right}
+.t-rnum{font-size:17px;font-weight:900;color:var(--indigo)}
+.t-rlabel{font-size:10px;color:var(--gray)}
+</style>
+</head>
+<body>
+<canvas id="canvas-bg"></canvas>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-icon">⚡</div>
+    LEAD<span>OVI</span>
+  </a>
+  <div class="nav-menu">
+    <a href="index.html" class="active">Accueil</a>
+    <div class="nav-dropdown">
+      <a href="#">Nos leads ▾</a>
+      <div class="dropdown-menu">
+        <a href="pv-solaire.html" class="dropdown-item"><div class="di-icon" style="background:rgba(255,214,10,0.12)">☀️</div>Panneaux PV Solaires</a>
+        <a href="pac.html" class="dropdown-item"><div class="di-icon" style="background:rgba(71,213,251,0.1)">🌡️</div>Pompe à Chaleur</a>
+        <a href="isolation.html" class="dropdown-item"><div class="di-icon" style="background:rgba(91,71,251,0.12)">🏠</div>Isolation</a>
+        <a href="renovation.html" class="dropdown-item"><div class="di-icon" style="background:rgba(46,213,115,0.1)">🔨</div>Rénovation Énergétique</a>
+        <a href="fenetres.html" class="dropdown-item"><div class="di-icon" style="background:rgba(251,139,71,0.12)">🪟</div>Fenêtres & Menuiseries</a>
+        <a href="pergola.html" class="dropdown-item"><div class="di-icon" style="background:rgba(165,180,252,0.12)">⛺</div>Pergola & Véranda</a>
+      </div>
+    </div>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="nav-right">
+    <div class="nav-status"><div class="pulse"></div>Leads en direct</div>
+    <a href="contact.html" class="btn btn-primary btn-sm">Demander un devis →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">⚡ Plateforme B2B — Réservé aux professionnels RGE</div>
+  <h1>La puissance des leads.<br><em>L'exclusivité en plus.</em></h1>
+  <p class="hero-sub">LEADOVI génère et livre des prospects qualifiés en temps réel aux meilleurs installateurs de France. PV, PAC, isolation, rénovation, fenêtres, pergola — nous couvrons tous vos marchés.</p>
+  <div class="hero-btns">
+    <a href="contact.html" class="btn btn-primary">Démarrer maintenant →</a>
+    <a href="#secteurs" class="btn btn-outline">Voir nos secteurs</a>
+  </div>
+  <div class="stats-bar fade-in">
+    <div class="stat"><span class="stat-num" data-count="52400" data-suffix="">0</span><span class="stat-label">Leads livrés</span></div>
+    <div class="stat"><span class="stat-num" data-count="380" data-suffix="">0</span><span class="stat-label">Partenaires actifs</span></div>
+    <div class="stat"><span class="stat-num" style="background:linear-gradient(90deg,#FB8B47,#FFB347);-webkit-background-clip:text;-webkit-text-fill-color:transparent">4,9/5</span><span class="stat-label">Satisfaction</span></div>
+    <div class="stat"><span class="stat-num" data-count="96" data-suffix="%">0</span><span class="stat-label">Depts couverts</span></div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-inner">
+    <div class="t-item"><div class="t-dot"></div>Lead <strong>PV Solaire</strong> — Nîmes (30) — à l'instant</div>
+    <div class="t-item"><div class="t-dot"></div>Lead <strong>PAC Air/Eau</strong> — Lyon (69) — il y a 45 sec</div>
+    <div class="t-item"><div class="t-dot"></div>Lead <strong>Isolation combles</strong> — Bordeaux (33) — il y a 1 min</div>
+    <div class="t-item"><div class="t-dot"></div>Lead <strong>PV Solaire</strong> — Marseille (13) — il y a 2 min</div>
+    <div class="t-item"><div class="t-dot"></div>Lead <strong>Fenêtres</strong> — Toulouse (31) — il y a 2 min</div>
+    <div class="t-item"><div class="t-dot"></div>Lead <strong>Rénovation</strong> — Montpellier (34) — il y a 3 min</div>
+    <div class="t-item"><div class="t-dot"></div>Lead <strong>Pergola</strong> — Nice (06) — il y a 3 min</div>
+    <div class="t-item"><div class="t-dot"></div>Lead <strong>PV Solaire</strong> — Avignon (84) — il y a 4 min</div>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<section class="section" style="background:var(--bg2)">
+  <div class="section-inner">
+    <div class="grid-2">
+      <div class="fade-in">
+        <div class="section-label">Tableau de bord</div>
+        <h2 class="section-title">Vos leads arrivent <em>en direct</em></h2>
+        <p class="section-sub" style="margin-bottom:28px">Chaque prospect qualifié vous est transmis en moins de 60 secondes — dans votre tableau de bord, par SMS et par email. Appelez pendant qu'il est chaud.</p>
+        <div class="feat-list">
+          <div class="feat-item"><div class="feat-icon">⚡</div><div class="feat-text"><h4>Livraison instantanée</h4><p>Moins de 60 secondes entre la soumission du prospect et votre notification.</p></div></div>
+          <div class="feat-item"><div class="feat-icon">🎯</div><div class="feat-text"><h4>Exclusivité totale</h4><p>Chaque lead est vendu une seule fois, à un seul installateur dans votre zone.</p></div></div>
+          <div class="feat-item"><div class="feat-icon">🔄</div><div class="feat-text"><h4>Remplacement garanti</h4><p>Lead invalide ou faux numéro ? Remplacé sans délai, sans justification.</p></div></div>
+        </div>
+      </div>
+      <div class="dash-mock fade-in">
+        <div class="dash-bar">
+          <div class="db-dot" style="background:#FF5F57"></div>
+          <div class="db-dot" style="background:#FEBC2E"></div>
+          <div class="db-dot" style="background:#28C840"></div>
+          <span class="dash-title">LEADOVI — Espace Client</span>
+          <div class="dash-live"><div class="pulse"></div>LIVE</div>
+        </div>
+        <div class="dash-body">
+          <div class="dash-kpis">
+            <div class="kpi"><span class="kpi-val" id="dash-today" style="color:#5B47FB">0</span><div class="kpi-label">Aujourd'hui</div></div>
+            <div class="kpi"><span class="kpi-val" id="dash-month" style="color:#FB8B47">0</span><div class="kpi-label">Ce mois</div></div>
+            <div class="kpi"><span class="kpi-val" style="color:#2ED573">38%</span><div class="kpi-label">Closing moy.</div></div>
+          </div>
+          <div class="feed-header"><span>Derniers leads reçus</span><span style="color:#47D5FB">● Live</span></div>
+          <div id="lead-feed"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTEURS -->
+<section class="section" id="secteurs">
+  <div class="section-inner">
+    <div class="section-head center fade-in">
+      <div class="section-label">Nos secteurs</div>
+      <h2 class="section-title">6 marchés. <em>Des milliers de prospects.</em></h2>
+      <p class="section-sub">Nous opérons sur tous les segments de l'énergie et de l'amélioration de l'habitat à fort potentiel.</p>
+    </div>
+    <div class="sector-cards fade-in">
+      <a href="pv-solaire.html" class="sc">
+        <div class="sc-icon">☀️</div>
+        <div class="sc-tag tag-indigo">Le + demandé</div>
+        <h3>PV Solaire</h3>
+        <p>Propriétaires avec projet d'installation de panneaux photovoltaïques 3 à 9 kWc.</p>
+      </a>
+      <a href="pac.html" class="sc">
+        <div class="sc-icon">🌡️</div>
+        <div class="sc-tag tag-teal">Fort panier moyen</div>
+        <h3>Pompe à Chaleur</h3>
+        <p>Prospects cherchant à remplacer leur chauffage — PAC air/air, air/eau, géothermique.</p>
+      </a>
+      <a href="isolation.html" class="sc">
+        <div class="sc-icon">🏠</div>
+        <div class="sc-tag tag-indigo">Volume élevé</div>
+        <h3>Isolation</h3>
+        <p>Combles perdus, murs, planchers. Projet de réduction des pertes thermiques.</p>
+      </a>
+      <a href="renovation.html" class="sc">
+        <div class="sc-icon">🔨</div>
+        <div class="sc-tag tag-green">Multi-corps</div>
+        <h3>Rénovation Énergétique</h3>
+        <p>Projets globaux incluant plusieurs corps de métier. Tickets élevés.</p>
+      </a>
+      <a href="fenetres.html" class="sc">
+        <div class="sc-icon">🪟</div>
+        <div class="sc-tag tag-orange">Toute l'année</div>
+        <h3>Fenêtres & Menuiseries</h3>
+        <p>Double et triple vitrage, portes d'entrée, baies vitrées, volets.</p>
+      </a>
+      <a href="pergola.html" class="sc">
+        <div class="sc-icon">⛺</div>
+        <div class="sc-tag" style="background:rgba(165,180,252,0.1);color:#a5b4fc;border:1px solid rgba(165,180,252,0.2)">Saisonnier</div>
+        <h3>Pergola & Véranda</h3>
+        <p>Extensions de terrasse, vérandas, pergolas bioclimatiques. Projets premium.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="section" style="background:var(--bg2)">
+  <div class="section-inner">
+    <div class="section-head center fade-in">
+      <div class="section-label">Comment ça marche</div>
+      <h2 class="section-title">Simple. Rapide. <em>Efficace.</em></h2>
+      <p class="section-sub">De votre inscription à votre premier lead : moins de 24 heures.</p>
+    </div>
+    <div class="process-grid fade-in" style="max-width:900px;margin:0 auto">
+      <div class="process-step"><div class="step-circle">01</div><h3>Vous définissez votre besoin</h3><p>Secteur(s), département(s), volume mensuel souhaité. Un conseiller valide votre profil.</p></div>
+      <div class="process-step"><div class="step-circle">02</div><h3>Vous commandez</h3><p>Paiement 100% sécurisé à la commande. Vous connaissez votre budget à l'euro près.</p></div>
+      <div class="process-step"><div class="step-circle orange">03</div><h3>Les leads arrivent</h3><p>Chaque prospect qualifié est transmis en moins de 60 secondes dans votre espace client.</p></div>
+      <div class="process-step"><div class="step-circle orange">04</div><h3>Vous signez</h3><p>Nos partenaires convertissent en moyenne 35 à 42% de leurs leads en chantiers signés.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="section">
+  <div class="section-inner">
+    <div class="grid-2 fade-in">
+      <div>
+        <div class="section-label">Pourquoi LEADOVI</div>
+        <h2 class="section-title">Pas des leads de masse.<br><em>Des leads de qualité.</em></h2>
+        <p class="section-sub" style="margin-bottom:28px">Nous ne revendons pas des bases d'emails. Chaque prospect a rempli un formulaire qualifié en moins de 5 minutes, avec un vrai projet.</p>
+        <a href="contact.html" class="btn btn-primary">Demander un accès →</a>
+      </div>
+      <div class="comp-table">
+        <div class="comp-header"><div>Critère</div><div class="col-us">LEADOVI</div><div>Concurrents</div></div>
+        <div class="comp-row"><div>Lead 100% exclusif</div><div class="ok">✓</div><div class="nok">✗</div></div>
+        <div class="comp-row"><div>Livraison &lt; 60 sec</div><div class="ok">✓</div><div class="maybe">∼</div></div>
+        <div class="comp-row"><div>Remplacement garanti</div><div class="ok">✓</div><div class="nok">✗</div></div>
+        <div class="comp-row"><div>Ciblage par département</div><div class="ok">✓</div><div class="maybe">∼</div></div>
+        <div class="comp-row"><div>6 secteurs couverts</div><div class="ok">✓</div><div class="nok">✗</div></div>
+        <div class="comp-row"><div>Sans engagement</div><div class="ok">✓</div><div class="nok">✗</div></div>
+        <div class="comp-row"><div>Account manager dédié</div><div class="ok">✓</div><div class="nok">✗</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section" style="background:var(--bg2)">
+  <div class="section-inner">
+    <div class="section-head center fade-in">
+      <div class="section-label">Témoignages</div>
+      <h2 class="section-title">Ils ont <em>multiplié leur CA</em></h2>
+      <p class="section-sub">Des installateurs qui ne cherchent plus leurs clients depuis qu'ils travaillent avec LEADOVI.</p>
+    </div>
+    <div class="testi-wrap fade-in">
+      <div class="testi"><div class="t-stars">★★★★★</div><p class="t-text">"J'ai essayé 3 fournisseurs avant LEADOVI. C'est le seul où les prospects décrochent vraiment. Je convertis 40% de ce qu'ils m'envoient. Mon CA a doublé en 8 mois."</p><div class="t-author"><div class="t-av" style="background:linear-gradient(135deg,#5B47FB,#4535E8);color:white">JM</div><div><div class="t-name">Jean-Marc V.</div><div class="t-role">Installateur PV — Gard (30)</div></div><div class="t-result"><div class="t-rnum">+112%</div><div class="t-rlabel">CA en 8 mois</div></div></div></div>
+      <div class="testi"><div class="t-stars">★★★★★</div><p class="t-text">"300 leads par mois, livrés en temps réel. Mon équipe ne prospecte plus du tout. On passe 100% du temps à vendre. C'est ce que je cherchais depuis des années."</p><div class="t-author"><div class="t-av" style="background:linear-gradient(135deg,#FB8B47,#E87535);color:white">SB</div><div><div class="t-name">Sophie B.</div><div class="t-role">PAC & Isolation — Hérault (34)</div></div><div class="t-result"><div class="t-rnum">300</div><div class="t-rlabel">leads / mois</div></div></div></div>
+      <div class="testi"><div class="t-stars">★★★★★</div><p class="t-text">"Le tableau de bord est ultra intuitif. Les leads arrivent en direct, j'appelle dans les 3 minutes. Le prospect est encore chaud. Taux de closing à 42%. Indispensable."</p><div class="t-author"><div class="t-av" style="background:linear-gradient(135deg,#47D5FB,#35B8E8);color:#050714">PR</div><div><div class="t-name">Pierre R.</div><div class="t-role">Rénovation — Vaucluse (84)</div></div><div class="t-result"><div class="t-rnum">42%</div><div class="t-rlabel">taux closing</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section" style="text-align:center">
+  <div class="section-inner">
+    <div class="cta-box fade-in" style="max-width:700px;margin:0 auto">
+      <div class="section-label" style="display:block;text-align:center;margin-bottom:14px">Prêt à démarrer ?</div>
+      <h2 style="font-size:clamp(26px,4vw,40px);font-weight:900;margin-bottom:12px">Recevez vos premiers leads<br><span style="background:linear-gradient(90deg,#5B47FB,#47D5FB);-webkit-background-clip:text;-webkit-text-fill-color:transparent">dans moins de 24 heures.</span></h2>
+      <p style="color:var(--gray2);font-size:15px;margin-bottom:28px;line-height:1.7">Nos conseillers définissent avec vous le volume, la zone et le secteur. Leads livrés dès le lendemain.</p>
+      <a href="contact.html" class="btn btn-primary" style="font-size:16px;padding:15px 36px">Demander mon accès →</a>
+      <div style="display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-top:20px">
+        <span style="font-size:12px;color:var(--gray);display:flex;align-items:center;gap:5px"><span style="color:var(--indigo)">✓</span> Sans engagement</span>
+        <span style="font-size:12px;color:var(--gray);display:flex;align-items:center;gap:5px"><span style="color:var(--indigo)">✓</span> Réponse en 2h</span>
+        <span style="font-size:12px;color:var(--gray);display:flex;align-items:center;gap:5px"><span style="color:var(--indigo)">✓</span> Réservé pro RGE</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="fl">LEAD<span>OVI</span></div>
+        <p>La plateforme de leads qualifiés pour les professionnels de l'énergie et de l'habitat. Exclusivité, rapidité, performance.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Nos leads</h5>
+        <a href="pv-solaire.html">PV Solaire</a>
+        <a href="pac.html">Pompe à Chaleur</a>
+        <a href="isolation.html">Isolation</a>
+        <a href="renovation.html">Rénovation</a>
+        <a href="fenetres.html">Fenêtres</a>
+        <a href="pergola.html">Pergola</a>
+      </div>
+      <div class="footer-col">
+        <h5>Entreprise</h5>
+        <a href="contact.html">Contact</a>
+        <a href="#">À propos</a>
+        <a href="#">Blog</a>
+      </div>
+      <div class="footer-col">
+        <h5>Légal</h5>
+        <a href="#">Mentions légales</a>
+        <a href="#">CGV</a>
+        <a href="#">RGPD</a>
+        <a href="#">Politique cookies</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 LEADOVI — Tous droits réservés</span>
+      <span>Plateforme réservée aux professionnels RGE</span>
+    </div>
+  </div>
+</footer>
+<script src="components.js"></script>
+</body>
+</html>

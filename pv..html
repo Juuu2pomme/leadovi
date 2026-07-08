@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Économisez jusqu'à 70% sur votre électricité — Panneaux Solaires</title>
+  <meta name="description" content="Le prix de l'électricité ne cesse d'augmenter. Protégez-vous avec le solaire et économisez jusqu'à 70% dès la première année.">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --green:#16A34A;
+      --green-dark:#15803D;
+      --green-light:#DCFCE7;
+      --green-mid:#22C55E;
+      --yellow:#EAB308;
+      --yellow-light:#FEF9C3;
+      --yellow-bright:#FDE047;
+      --dark:#0F1F0F;
+      --dark2:#1A2E1A;
+      --gray:#6B7280;
+      --light:#F0FDF4;
+      --white:#FFFFFF;
+      --red:#DC2626;
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--white);color:var(--dark);line-height:1.6}
+
+    /* NAV */
+    nav{background:var(--dark);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 20px rgba(0,0,0,0.3)}
+    .logo{font-size:22px;font-weight:900;color:var(--white);letter-spacing:-0.5px}
+    .logo span{color:var(--yellow-bright)}
+    .nav-right{display:flex;align-items:center;gap:12px}
+    .nav-phone{color:var(--yellow-bright);font-weight:700;font-size:15px;text-decoration:none}
+    .nav-badge{background:var(--green);color:white;font-size:12px;font-weight:700;padding:4px 12px;border-radius:20px}
+
+    /* URGENCY BANNER */
+    .urgency-banner{background:linear-gradient(90deg,var(--red),#B91C1C);color:white;text-align:center;padding:10px 16px;font-size:13px;font-weight:600;letter-spacing:0.3px}
+    .urgency-banner span{background:rgba(255,255,255,0.2);padding:2px 10px;border-radius:12px;margin-left:8px}
+
+    /* HERO */
+    .hero{background:linear-gradient(160deg,var(--dark) 0%,var(--dark2) 60%,#0A1F0A 100%);padding:56px 24px 0;text-align:center;position:relative;overflow:hidden}
+    .hero::before{content:'';position:absolute;top:-80px;right:-80px;width:450px;height:450px;background:radial-gradient(circle,rgba(234,179,8,0.12) 0%,transparent 70%);border-radius:50%}
+    .hero::after{content:'';position:absolute;bottom:60px;left:-60px;width:300px;height:300px;background:radial-gradient(circle,rgba(34,197,94,0.1) 0%,transparent 70%);border-radius:50%}
+    .badge-top{display:inline-flex;align-items:center;gap:8px;background:rgba(234,179,8,0.15);border:1px solid rgba(234,179,8,0.4);color:var(--yellow-bright);font-size:13px;font-weight:700;padding:7px 18px;border-radius:20px;margin-bottom:24px;text-transform:uppercase;letter-spacing:0.8px}
+    .hero h1{font-size:clamp(30px,5.5vw,56px);font-weight:900;color:var(--white);line-height:1.1;margin-bottom:16px;position:relative;z-index:1}
+    .hero h1 .hl-yellow{color:var(--yellow-bright)}
+    .hero h1 .hl-green{color:var(--green-mid)}
+    .hero-sub{font-size:clamp(15px,2.5vw,19px);color:#94A3B8;max-width:580px;margin:0 auto 16px;position:relative;z-index:1}
+    .hero-warning{display:inline-flex;align-items:center;gap:8px;background:rgba(220,38,38,0.15);border:1px solid rgba(220,38,38,0.3);color:#FCA5A5;font-size:14px;font-weight:600;padding:8px 16px;border-radius:12px;margin-bottom:36px;position:relative;z-index:1}
+
+    /* FORM CARD */
+    .form-card{background:var(--white);border-radius:20px 20px 0 0;padding:32px 28px 36px;max-width:500px;margin:0 auto;position:relative;z-index:2;box-shadow:0 -20px 60px rgba(0,0,0,0.4)}
+    .form-card-title{font-size:19px;font-weight:800;color:var(--dark);text-align:center;margin-bottom:4px}
+    .form-card-sub{font-size:13px;color:var(--gray);text-align:center;margin-bottom:20px}
+    .form-group{margin-bottom:13px}
+    .form-group label{display:block;font-size:12px;font-weight:700;color:var(--dark);margin-bottom:5px;text-transform:uppercase;letter-spacing:0.4px}
+    .form-group input,.form-group select{width:100%;padding:12px 14px;border:1.5px solid #D1FAE5;border-radius:10px;font-size:14px;color:var(--dark);background:var(--white);transition:border-color .2s,box-shadow .2s;outline:none}
+    .form-group input:focus,.form-group select:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(22,163,74,0.1)}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .btn-submit{width:100%;padding:15px;background:linear-gradient(135deg,var(--green),var(--green-dark));color:white;border:none;border-radius:12px;font-size:16px;font-weight:800;cursor:pointer;margin-top:6px;transition:transform .15s,box-shadow .15s;box-shadow:0 4px 20px rgba(22,163,74,0.4);position:relative;overflow:hidden}
+    .btn-submit::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.15),transparent);transition:left .4s}
+    .btn-submit:hover::after{left:100%}
+    .btn-submit:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(22,163,74,0.5)}
+    .secure-note{display:flex;align-items:center;justify-content:center;gap:6px;font-size:11px;color:var(--gray);margin-top:10px}
+
+    /* SUCCESS */
+    .success-overlay{display:none;text-align:center;padding:20px 0}
+    .success-check{width:70px;height:70px;background:linear-gradient(135deg,var(--green),var(--green-dark));border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:32px}
+    .success-overlay h3{font-size:20px;font-weight:800;margin-bottom:8px;color:var(--dark)}
+    .success-overlay p{font-size:14px;color:var(--gray)}
+
+    /* STATS */
+    .stats-bar{background:var(--dark2);padding:28px 24px;display:flex;justify-content:center;flex-wrap:wrap;gap:0}
+    .stat-item{text-align:center;padding:12px 28px;border-right:1px solid rgba(255,255,255,0.1)}
+    .stat-item:last-child{border-right:none}
+    .stat-num{font-size:30px;font-weight:900;color:var(--yellow-bright);display:block}
+    .stat-label{font-size:12px;color:#94A3B8;font-weight:500}
+
+    /* SECTIONS */
+    .section{padding:64px 24px}
+    .section-title{font-size:clamp(22px,3.5vw,34px);font-weight:900;text-align:center;margin-bottom:10px}
+    .section-sub{text-align:center;color:var(--gray);font-size:15px;max-width:540px;margin:0 auto 44px}
+
+    /* PRIX ELECTRICITE */
+    .price-section{background:linear-gradient(135deg,#FFF7F7,#FFF)}
+    .price-chart{max-width:780px;margin:0 auto}
+    .chart-svg-wrap{background:white;border-radius:16px;box-shadow:0 2px 20px rgba(0,0,0,0.07);padding:20px 16px 12px;margin-bottom:12px}
+    .chart-note{text-align:center;font-size:12px;color:var(--gray);margin-top:10px;font-style:italic}
+    .price-callout{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;max-width:760px;margin:32px auto 0}
+    .callout-box{background:white;border:1.5px solid #FECACA;border-radius:14px;padding:20px;text-align:center}
+    .callout-box.green{border-color:var(--green-light);background:var(--light)}
+    .callout-num{font-size:28px;font-weight:900;margin-bottom:4px}
+    .callout-label{font-size:13px;color:var(--gray)}
+
+    /* GARANTIE */
+    .garantie-section{background:var(--light)}
+    .garantie-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;max-width:1000px;margin:0 auto}
+    .garantie-card{background:white;border-radius:16px;padding:28px 22px;border-top:4px solid var(--green);box-shadow:0 2px 12px rgba(0,0,0,0.05);transition:transform .2s}
+    .garantie-card:hover{transform:translateY(-4px)}
+    .garantie-icon{font-size:36px;margin-bottom:14px}
+    .garantie-years{font-size:38px;font-weight:900;color:var(--green);line-height:1}
+    .garantie-years span{font-size:16px;font-weight:600;color:var(--gray)}
+    .garantie-title{font-size:16px;font-weight:800;margin:8px 0 6px}
+    .garantie-desc{font-size:13px;color:var(--gray);line-height:1.6}
+
+    /* SIMULATOR */
+    .simulator-section{background:linear-gradient(160deg,var(--dark),var(--dark2));padding:64px 24px;color:white}
+    .simulator-section .section-title{color:white}
+    .simulator-section .section-sub{color:#94A3B8}
+    .sim-layout{display:grid;grid-template-columns:1fr 1fr;gap:32px;max-width:900px;margin:0 auto}
+    @media(max-width:680px){.sim-layout{grid-template-columns:1fr}}
+    .sim-inputs{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:28px}
+    .sim-results{display:flex;flex-direction:column;gap:14px}
+    .slider-group{margin-bottom:22px}
+    .slider-label{display:flex;justify-content:space-between;font-size:13px;color:#CBD5E1;margin-bottom:8px;font-weight:600}
+    .slider-val{color:var(--yellow-bright);font-size:17px;font-weight:900}
+    input[type=range]{width:100%;height:6px;border-radius:3px;background:rgba(255,255,255,0.15);outline:none;appearance:none;cursor:pointer}
+    input[type=range]::-webkit-slider-thumb{appearance:none;width:20px;height:20px;border-radius:50%;background:var(--yellow-bright);cursor:pointer;box-shadow:0 0 0 4px rgba(234,179,8,0.25)}
+    .sim-select{width:100%;padding:11px 14px;border:1px solid rgba(255,255,255,0.15);border-radius:10px;font-size:13px;background:rgba(255,255,255,0.08);color:white;outline:none;margin-top:6px}
+    .sim-select option{background:#1A2E1A;color:white}
+    .result-card{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:20px;text-align:center}
+    .result-card.main{background:linear-gradient(135deg,var(--green),var(--green-dark));border:none}
+    .result-card.yellow{background:linear-gradient(135deg,var(--yellow),#CA8A04);border:none}
+    .result-card-label{font-size:12px;opacity:.8;margin-bottom:4px;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+    .result-card-num{font-size:36px;font-weight:900;line-height:1}
+    .result-card-sub{font-size:12px;opacity:.75;margin-top:4px}
+    .result-card.small .result-card-num{font-size:24px}
+    .sim-note{text-align:center;font-size:12px;color:#64748B;margin-top:16px;max-width:900px;margin-left:auto;margin-right:auto}
+
+    /* ECONOMIES CARDS */
+    .eco-section{background:var(--white)}
+    .eco-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;max-width:1000px;margin:0 auto}
+    .eco-card{border-radius:16px;padding:28px 22px;border:1.5px solid #D1FAE5;transition:transform .2s,box-shadow .2s}
+    .eco-card:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(0,0,0,0.08)}
+    .eco-card.featured{background:linear-gradient(135deg,var(--light),white);border-color:var(--green)}
+    .eco-icon{width:50px;height:50px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:16px;background:linear-gradient(135deg,var(--green),var(--green-dark))}
+    .eco-card h3{font-size:17px;font-weight:800;margin-bottom:6px}
+    .eco-card p{font-size:13px;color:var(--gray);margin-bottom:14px;line-height:1.6}
+    .eco-tag{display:inline-block;background:var(--green-light);color:var(--green-dark);font-size:12px;font-weight:700;padding:3px 10px;border-radius:20px;margin-bottom:12px}
+    .eco-saving{background:var(--light);border-radius:10px;padding:12px 14px;display:flex;justify-content:space-between;align-items:center}
+    .eco-saving-label{font-size:12px;color:var(--gray)}
+    .eco-saving-val{font-size:22px;font-weight:900;color:var(--green)}
+
+    /* TESTIMONIALS */
+    .testimonials{background:var(--yellow-light);padding:64px 24px}
+    .testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;max-width:1000px;margin:0 auto}
+    .testi-card{background:white;border-radius:16px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,0.06)}
+    .stars{color:var(--yellow);font-size:17px;margin-bottom:10px}
+    .testi-text{font-size:14px;color:var(--dark);margin-bottom:14px;font-style:italic;line-height:1.7}
+    .testi-author{display:flex;align-items:center;gap:10px}
+    .testi-avatar{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:white;flex-shrink:0}
+    .testi-name{font-size:13px;font-weight:700}
+    .testi-city{font-size:12px;color:var(--gray)}
+    .saving-tag{background:var(--green-light);color:var(--green-dark);font-size:12px;font-weight:700;padding:3px 10px;border-radius:20px;margin-left:auto;white-space:nowrap}
+
+    /* PROCESS */
+    .process-section{background:white;padding:64px 24px}
+    .process-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;max-width:900px;margin:0 auto}
+    .step{text-align:center;padding:24px 16px;position:relative}
+    .step-num{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--green),var(--green-dark));color:white;font-size:20px;font-weight:900;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+    .step h3{font-size:15px;font-weight:800;margin-bottom:6px}
+    .step p{font-size:13px;color:var(--gray);line-height:1.6}
+
+    /* CTA FINAL */
+    .cta-final{background:linear-gradient(135deg,var(--dark),var(--dark2));padding:72px 24px;text-align:center}
+    .cta-final h2{font-size:clamp(24px,4vw,40px);font-weight:900;color:white;margin-bottom:14px}
+    .cta-final p{color:#94A3B8;font-size:15px;margin-bottom:32px}
+    .btn-cta{display:inline-block;padding:17px 44px;background:linear-gradient(135deg,var(--green),var(--green-dark));color:white;border-radius:14px;font-size:17px;font-weight:800;text-decoration:none;box-shadow:0 6px 24px rgba(22,163,74,0.5);transition:transform .15s,box-shadow .15s;border:none;cursor:pointer}
+    .btn-cta:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(22,163,74,0.6)}
+    .cta-badges{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-top:24px}
+    .cta-badge{display:flex;align-items:center;gap:6px;font-size:13px;color:#94A3B8}
+    .cta-badge::before{content:'✓';color:var(--green-mid);font-weight:700}
+
+    /* FOOTER */
+    footer{background:#0A140A;color:#4B5563;text-align:center;padding:20px;font-size:12px}
+
+    /* RESPONSIVE */
+    @media(max-width:600px){
+      .stat-item{padding:10px 16px}
+      .form-row{grid-template-columns:1fr}
+      .nav-phone{display:none}
+      .chart-bars{height:140px}
+    }
+  </style>
+</head>
+<body>
+
+<!-- URGENCY BANNER -->
+<div class="urgency-banner">
+  ⚡ Prix de l'électricité : +80% en 3 ans — Protégez-vous dès maintenant
+  <span>Simulation gratuite</span>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Sol<span>aria</span></div>
+  <div class="nav-right">
+    <a href="tel:0800000000" class="nav-phone">📞 Appel gratuit</a>
+    <div class="nav-badge">✓ Sans engagement</div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="badge-top">🌞 Panneaux solaires photovoltaïques</div>
+  <h1>
+    Votre facture d'électricité<br>
+    <span class="hl-yellow">augmente chaque année.</span><br>
+    <span class="hl-green">Économisez jusqu'à 70%</span> dès maintenant.
+  </h1>
+  <p class="hero-sub">Le prix du kWh a augmenté de plus de 80% en 3 ans. Le solaire vous permet de produire votre propre électricité et de couper ce lien définitivement.</p>
+  <div class="hero-warning">
+    ⚠️ Sans panneaux solaires, votre facture pourrait doubler d'ici 5 ans
+  </div>
+
+  <div class="form-card">
+    <div id="form-content">
+      <div class="form-card-title">Calculez vos économies gratuitement</div>
+      <div class="form-card-sub">Résultat immédiat · Aucun engagement · 100% gratuit</div>
+
+      <form name="leads-pv" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" onsubmit="submitForm(event)">
+        <input type="hidden" name="form-name" value="leads-pv"/>
+        <p hidden><input name="bot-field"/></p>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Prénom</label>
+            <input type="text" name="prenom" placeholder="Jean" required/>
+          </div>
+          <div class="form-group">
+            <label>Nom</label>
+            <input type="text" name="nom" placeholder="Dupont" required/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Téléphone</label>
+          <input type="tel" name="telephone" placeholder="06 00 00 00 00" required/>
+        </div>
+        <div class="form-group">
+          <label>Votre département</label>
+          <select name="departement" required id="dept-select">
+            <option value="" disabled selected>Sélectionnez votre département</option>
+            <option>01 — Ain</option><option>02 — Aisne</option><option>03 — Allier</option>
+            <option>04 — Alpes-de-Haute-Provence</option><option>05 — Hautes-Alpes</option>
+            <option>06 — Alpes-Maritimes</option><option>07 — Ardèche</option>
+            <option>08 — Ardennes</option><option>09 — Ariège</option><option>10 — Aube</option>
+            <option>11 — Aude</option><option>12 — Aveyron</option>
+            <option>13 — Bouches-du-Rhône</option><option>14 — Calvados</option>
+            <option>15 — Cantal</option><option>16 — Charente</option>
+            <option>17 — Charente-Maritime</option><option>18 — Cher</option>
+            <option>19 — Corrèze</option><option>2A — Corse-du-Sud</option>
+            <option>2B — Haute-Corse</option><option>21 — Côte-d'Or</option>
+            <option>22 — Côtes-d'Armor</option><option>23 — Creuse</option>
+            <option>24 — Dordogne</option><option>25 — Doubs</option><option>26 — Drôme</option>
+            <option>27 — Eure</option><option>28 — Eure-et-Loir</option>
+            <option>29 — Finistère</option><option>30 — Gard</option>
+            <option>31 — Haute-Garonne</option><option>32 — Gers</option>
+            <option>33 — Gironde</option><option>34 — Hérault</option>
+            <option>35 — Ille-et-Vilaine</option><option>36 — Indre</option>
+            <option>37 — Indre-et-Loire</option><option>38 — Isère</option>
+            <option>39 — Jura</option><option>40 — Landes</option>
+            <option>41 — Loir-et-Cher</option><option>42 — Loire</option>
+            <option>43 — Haute-Loire</option><option>44 — Loire-Atlantique</option>
+            <option>45 — Loiret</option><option>46 — Lot</option>
+            <option>47 — Lot-et-Garonne</option><option>48 — Lozère</option>
+            <option>49 — Maine-et-Loire</option><option>50 — Manche</option>
+            <option>51 — Marne</option><option>52 — Haute-Marne</option>
+            <option>53 — Mayenne</option><option>54 — Meurthe-et-Moselle</option>
+            <option>55 — Meuse</option><option>56 — Morbihan</option>
+            <option>57 — Moselle</option><option>58 — Nièvre</option>
+            <option>59 — Nord</option><option>60 — Oise</option><option>61 — Orne</option>
+            <option>62 — Pas-de-Calais</option><option>63 — Puy-de-Dôme</option>
+            <option>64 — Pyrénées-Atlantiques</option><option>65 — Hautes-Pyrénées</option>
+            <option>66 — Pyrénées-Orientales</option><option>67 — Bas-Rhin</option>
+            <option>68 — Haut-Rhin</option><option>69 — Rhône</option>
+            <option>70 — Haute-Saône</option><option>71 — Saône-et-Loire</option>
+            <option>72 — Sarthe</option><option>73 — Savoie</option>
+            <option>74 — Haute-Savoie</option><option>75 — Paris</option>
+            <option>76 — Seine-Maritime</option><option>77 — Seine-et-Marne</option>
+            <option>78 — Yvelines</option><option>79 — Deux-Sèvres</option>
+            <option>80 — Somme</option><option>81 — Tarn</option>
+            <option>82 — Tarn-et-Garonne</option><option>83 — Var</option>
+            <option>84 — Vaucluse</option><option>85 — Vendée</option>
+            <option>86 — Vienne</option><option>87 — Haute-Vienne</option>
+            <option>88 — Vosges</option><option>89 — Yonne</option>
+            <option>90 — Territoire de Belfort</option><option>91 — Essonne</option>
+            <option>92 — Hauts-de-Seine</option><option>93 — Seine-Saint-Denis</option>
+            <option>94 — Val-de-Marne</option><option>95 — Val-d'Oise</option>
+            <option>971 — Guadeloupe</option><option>972 — Martinique</option>
+            <option>973 — Guyane</option><option>974 — La Réunion</option>
+            <option>976 — Mayotte</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Facture mensuelle actuelle</label>
+          <select name="facture" required>
+            <option value="" disabled selected>Sélectionnez une tranche</option>
+            <option>Moins de 80€/mois</option>
+            <option>Entre 80€ et 130€/mois</option>
+            <option>Entre 130€ et 200€/mois</option>
+            <option>Entre 200€ et 300€/mois</option>
+            <option>Plus de 300€/mois</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Type de logement</label>
+          <select name="logement" required>
+            <option value="" disabled selected>Sélectionnez</option>
+            <option>Maison individuelle</option>
+            <option>Maison avec piscine</option>
+            <option>Maison avec voiture électrique</option>
+            <option>Grande propriété / Corps de ferme</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-submit">🌿 Calculer mes économies gratuitement →</button>
+        <div class="secure-note">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          Données protégées · Jamais revendues à des tiers
+        </div>
+      </form>
+    </div>
+    <div class="success-overlay" id="success-msg">
+      <div class="success-check">✓</div>
+      <h3>Demande envoyée !</h3>
+      <p>Un expert vous contacte sous <strong>2h</strong> avec votre simulation personnalisée et gratuite.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-item"><span class="stat-num">+80%</span><span class="stat-label">hausse prix élec. en 3 ans</span></div>
+  <div class="stat-item"><span class="stat-num">70%</span><span class="stat-label">d'économies max</span></div>
+  <div class="stat-item"><span class="stat-num">30 ans</span><span class="stat-label">de garantie panneau</span></div>
+  <div class="stat-item"><span class="stat-num">14 000+</span><span class="stat-label">foyers équipés</span></div>
+</div>
+
+<!-- PRIX ELECTRICITE -->
+<section class="section price-section">
+  <h2 class="section-title">Le prix de l'électricité s'emballe.<br>Jusqu'où ça va aller ?</h2>
+  <p class="section-sub">En moins de 4 ans, votre facture a explosé. Et les experts prévoient une hausse continue. Le solaire est la seule protection durable.</p>
+
+  <div class="price-chart">
+    <div class="chart-svg-wrap">
+      <svg id="price-svg" viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block"></svg>
+    </div>
+    <div class="chart-note">Prix moyen du kWh en France (tarif réglementé, TTC) — Source : CRE / EDF</div>
+  </div>
+
+  <div class="price-callout">
+    <div class="callout-box">
+      <div class="callout-num" style="color:var(--red)">+80%</div>
+      <div class="callout-label">de hausse depuis 2021</div>
+    </div>
+    <div class="callout-box">
+      <div class="callout-num" style="color:var(--red)">×2</div>
+      <div class="callout-label">facture estimée d'ici 2030</div>
+    </div>
+    <div class="callout-box green">
+      <div class="callout-num" style="color:var(--green)">0%</div>
+      <div class="callout-label">d'augmentation sur votre production solaire</div>
+    </div>
+  </div>
+</section>
+
+<!-- GARANTIE 30 ANS -->
+<section class="section garantie-section">
+  <h2 class="section-title">Un investissement garanti <span style="color:var(--green)">30 ans</span></h2>
+  <p class="section-sub">Le solaire n'est pas un pari. C'est un équipement garanti contractuellement sur 3 décennies, avec des performances certifiées.</p>
+
+  <div class="garantie-grid">
+    <div class="garantie-card">
+      <div class="garantie-icon">⚡</div>
+      <div class="garantie-years">30 <span>ans</span></div>
+      <div class="garantie-title">Garantie performance panneau</div>
+      <div class="garantie-desc">Les panneaux conservent au minimum 80% de leur rendement initial après 30 ans. Performance certifiée et contractuelle.</div>
+    </div>
+    <div class="garantie-card">
+      <div class="garantie-icon">🏅</div>
+      <div class="garantie-years" style="font-size:22px;padding-top:6px">RGE<br><span style="font-size:14px;color:var(--green);font-weight:800">QUALIPV</span></div>
+      <div class="garantie-title">Installateur certifié RGE QualiPV</div>
+      <div class="garantie-desc">Tous nos installateurs sont certifiés RGE QualiPV, la qualification de référence pour les professionnels du photovoltaïque. Gage de qualité et de sérieux.</div>
+    </div>
+    <div class="garantie-card">
+      <div class="garantie-icon">🏠</div>
+      <div class="garantie-years">10 <span>ans</span></div>
+      <div class="garantie-title">Garantie décennale installateur</div>
+      <div class="garantie-desc">L'installation est couverte par la garantie décennale obligatoire. Toute malfaçon est réparée sans frais.</div>
+    </div>
+    <div class="garantie-card">
+      <div class="garantie-icon">💰</div>
+      <div class="garantie-years">7 <span>ans</span></div>
+      <div class="garantie-title">Retour sur investissement</div>
+      <div class="garantie-desc">En moyenne, votre installation est remboursée en 6 à 8 ans. Ensuite, 20 ans d'électricité quasi gratuite.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SIMULATOR AVANCÉ -->
+<section class="simulator-section">
+  <h2 class="section-title">Simulateur d'économies avancé</h2>
+  <p class="section-sub">Renseignez votre situation réelle pour obtenir une estimation précise de vos économies.</p>
+
+  <div class="sim-layout">
+    <div class="sim-inputs">
+      <div class="slider-group">
+        <div class="slider-label">
+          <span>Facture mensuelle actuelle</span>
+          <span class="slider-val" id="sv-bill">150€</span>
+        </div>
+        <input type="range" min="50" max="500" value="150" step="10" id="sl-bill" oninput="calcSim()">
+      </div>
+
+      <div class="slider-group">
+        <div class="slider-label">
+          <span>Surface de toiture disponible</span>
+          <span class="slider-val" id="sv-roof">20 m²</span>
+        </div>
+        <input type="range" min="10" max="60" value="20" step="5" id="sl-roof" oninput="calcSim()">
+      </div>
+
+      <div class="slider-group">
+        <div class="slider-label"><span>Ensoleillement de votre région</span></div>
+        <select class="sim-select" id="sl-sun" onchange="calcSim()">
+          <option value="0.52">Faible (Nord, Bretagne, Normandie)</option>
+          <option value="0.60">Moyen (Île-de-France, Centre, Bourgogne)</option>
+          <option value="0.67" selected>Fort (Rhône-Alpes, Nouvelle-Aquitaine)</option>
+          <option value="0.72">Très fort (PACA, Occitanie, Gard, Hérault)</option>
+        </select>
+      </div>
+
+      <div class="slider-group" style="margin-bottom:0">
+        <div class="slider-label"><span>Hausse annuelle prévue du kWh</span></div>
+        <select class="sim-select" id="sl-raise" onchange="calcSim()">
+          <option value="0.04">Optimiste (+4%/an)</option>
+          <option value="0.07" selected>Réaliste (+7%/an)</option>
+          <option value="0.10">Pessimiste (+10%/an)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="sim-results">
+      <div class="result-card main">
+        <div class="result-card-label">Économie mensuelle estimée</div>
+        <div class="result-card-num" id="r-monthly">-87€</div>
+        <div class="result-card-sub">sur votre facture actuelle</div>
+      </div>
+      <div class="result-card yellow">
+        <div class="result-card-label">Économie annuelle</div>
+        <div class="result-card-num" id="r-annual">1 044€</div>
+        <div class="result-card-sub">dès la première année</div>
+      </div>
+      <div class="result-card small">
+        <div class="result-card-label">Économies sur 10 ans</div>
+        <div class="result-card-num" id="r-10y" style="color:var(--yellow-bright)">14 680€</div>
+        <div class="result-card-sub">en tenant compte de la hausse des tarifs</div>
+      </div>
+      <div class="result-card small">
+        <div class="result-card-label">Économies sur 25 ans</div>
+        <div class="result-card-num" id="r-25y" style="color:var(--green-mid)">58 200€</div>
+        <div class="result-card-sub">projection selon la tendance actuelle</div>
+      </div>
+    </div>
+  </div>
+  <div class="sim-note">* Simulation indicative basée sur les données moyennes nationales. Une étude personnalisée gratuite vous sera fournie par votre conseiller.</div>
+</section>
+
+<!-- ECONOMIES -->
+<section class="section eco-section">
+  <h2 class="section-title">Vos économies selon votre profil</h2>
+  <p class="section-sub">Chaque foyer est différent. Voici ce que le solaire change concrètement selon votre situation.</p>
+
+  <div class="eco-grid">
+    <div class="eco-card">
+      <div class="eco-icon">🏠</div>
+      <span class="eco-tag">Maison standard</span>
+      <h3>Couple ou famille</h3>
+      <p>Maison de 100 à 150 m², chauffage gaz ou pompe à chaleur, facture électrique modérée.</p>
+      <div class="eco-saving">
+        <span class="eco-saving-label">Économie annuelle</span>
+        <span class="eco-saving-val">jusqu'à 900€</span>
+      </div>
+    </div>
+    <div class="eco-card featured">
+      <div class="eco-icon">⚡</div>
+      <span class="eco-tag">Profil idéal</span>
+      <h3>Grande maison + équipements</h3>
+      <p>Maison de 150 à 250 m², chauffage électrique, climatisation, plusieurs équipements énergivores.</p>
+      <div class="eco-saving">
+        <span class="eco-saving-label">Économie annuelle</span>
+        <span class="eco-saving-val">jusqu'à 1 800€</span>
+      </div>
+    </div>
+    <div class="eco-card">
+      <div class="eco-icon">🏊</div>
+      <span class="eco-tag">Forte consommation</span>
+      <h3>Piscine + voiture électrique</h3>
+      <p>Propriété avec piscine et/ou véhicule électrique à recharger. Factures souvent > 300€/mois.</p>
+      <div class="eco-saving">
+        <span class="eco-saving-label">Économie annuelle</span>
+        <span class="eco-saving-val">jusqu'à 3 200€</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process-section">
+  <h2 class="section-title">Comment ça fonctionne ?</h2>
+  <p class="section-sub">De la simulation à l'économie, le processus est simple et rapide.</p>
+  <div class="process-steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>Simulation gratuite</h3>
+      <p>Remplissez le formulaire en 30 secondes. Un expert analyse votre situation.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>Étude personnalisée</h3>
+      <p>Vous recevez une simulation précise adaptée à votre toiture et votre consommation réelle.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3>Installation rapide</h3>
+      <p>Une équipe certifiée installe vos panneaux en 1 à 2 jours. Garantie décennale incluse.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <h3>Vous économisez</h3>
+      <p>Dès le premier mois, votre facture baisse. Et elle continuera de baisser pendant 30 ans.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <h2 class="section-title">Ils ont arrêté de subir les hausses</h2>
+  <p class="section-sub">Des propriétaires qui ont fait le calcul et ne regardent plus jamais leur facture avec inquiétude.</p>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">"Ma facture est passée de 210€ à 62€. Et pendant que mes voisins se plaignent des hausses, moi je m'en fiche complètement. C'est la meilleure décision que j'aie prise."</p>
+      <div class="testi-author">
+        <div class="testi-avatar" style="background:linear-gradient(135deg,#16A34A,#15803D)">M</div>
+        <div><div class="testi-name">Michel R.</div><div class="testi-city">Nîmes — Gard (30)</div></div>
+        <div class="saving-tag">-70%</div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">"On recharge notre voiture électrique avec nos propres panneaux. Notre facture totale, voiture comprise, est inférieure à ce qu'on payait avant en électricité seule."</p>
+      <div class="testi-author">
+        <div class="testi-avatar" style="background:linear-gradient(135deg,#EAB308,#CA8A04)">S</div>
+        <div><div class="testi-name">Sophie & Marc L.</div><div class="testi-city">Montpellier — Hérault (34)</div></div>
+        <div class="saving-tag">-65%</div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">"J'avais une piscine et une facture à 380€/mois. Aujourd'hui je suis à 95€. En 7 ans mon installation sera remboursée. Ensuite c'est 20 ans de quasi-gratuité."</p>
+      <div class="testi-author">
+        <div class="testi-avatar" style="background:linear-gradient(135deg,#7C3AED,#5B21B6)">P</div>
+        <div><div class="testi-name">Pierre D.</div><div class="testi-city">Avignon — Vaucluse (84)</div></div>
+        <div class="saving-tag">-75%</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <h2>Arrêtez de subir.<br><span style="color:var(--green-mid)">Commencez à économiser.</span></h2>
+  <p>Simulation 100% gratuite et sans engagement. Résultat en moins de 2 heures.</p>
+  <a href="#" class="btn-cta" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">
+    🌿 Calculer mes économies maintenant
+  </a>
+  <div class="cta-badges">
+    <span class="cta-badge">Simulation gratuite</span>
+    <span class="cta-badge">Sans engagement</span>
+    <span class="cta-badge">Garantie 30 ans</span>
+    <span class="cta-badge">Données protégées</span>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Solaria · Simulation sans engagement · Protection des données conforme au RGPD · Mentions légales</p>
+</footer>
+
+<script>
+// ── SVG Price Chart
+(function(){
+  const data = [
+    {year:'2019', val:0.158},
+    {year:'2020', val:0.162},
+    {year:'2021', val:0.168},
+    {year:'2022', val:0.196},
+    {year:'2023', val:0.227},
+    {year:'2024', val:0.255},
+    {year:'2025', val:0.278},
+    {year:'2026*',val:0.295},
+  ];
+  const W=700, H=280, PL=52, PR=20, PT=36, PB=44;
+  const cW=W-PL-PR, cH=H-PT-PB;
+  const minV=0.13, maxV=0.32;
+  const svg = document.getElementById('price-svg');
+
+  function xOf(i){ return PL + (i/(data.length-1))*cW; }
+  function yOf(v){ return PT + cH - ((v-minV)/(maxV-minV))*cH; }
+
+  // Grid lines
+  [0.15,0.18,0.21,0.24,0.27,0.30].forEach(v=>{
+    const y=yOf(v);
+    svg.innerHTML+=`<line x1="${PL}" y1="${y}" x2="${W-PR}" y2="${y}" stroke="#F0F0F0" stroke-width="1"/>`;
+    svg.innerHTML+=`<text x="${PL-6}" y="${y+4}" text-anchor="end" font-size="10" fill="#9CA3AF">${v.toFixed(2)}€</text>`;
+  });
+
+  // Gradient fill under curve
+  svg.innerHTML+=`<defs>
+    <linearGradient id="fillGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#DC2626" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#DC2626" stop-opacity="0.01"/>
+    </linearGradient>
+  </defs>`;
+
+  // Area path
+  let areaPath=`M${xOf(0)},${H-PB}`;
+  data.forEach((d,i)=> areaPath+=` L${xOf(i)},${yOf(d.val)}`);
+  areaPath+=` L${xOf(data.length-1)},${H-PB} Z`;
+  svg.innerHTML+=`<path d="${areaPath}" fill="url(#fillGrad)"/>`;
+
+  // Line path
+  let linePath=`M${xOf(0)},${yOf(data[0].val)}`;
+  data.forEach((d,i)=>{ if(i>0) linePath+=` L${xOf(i)},${yOf(d.val)}`; });
+  svg.innerHTML+=`<path d="${linePath}" fill="none" stroke="#DC2626" stroke-width="2.5" stroke-linejoin="round"/>`;
+
+  // Trend projection dashed
+  const last=data[data.length-1];
+  svg.innerHTML+=`<line x1="${xOf(data.length-1)}" y1="${yOf(last.val)}" x2="${xOf(data.length-1)+40}" y2="${yOf(last.val+0.025)}" stroke="#B91C1C" stroke-width="2" stroke-dasharray="5,3"/>`;
+  svg.innerHTML+=`<text x="${xOf(data.length-1)+44}" y="${yOf(last.val+0.025)+4}" font-size="10" fill="#B91C1C" font-weight="700">→</text>`;
+
+  // Dots + labels
+  data.forEach((d,i)=>{
+    const x=xOf(i), y=yOf(d.val);
+    const isLast = i===data.length-1;
+    const color = i<3?'#22C55E':i<5?'#F97316':'#DC2626';
+    svg.innerHTML+=`<circle cx="${x}" cy="${y}" r="${isLast?7:5}" fill="${color}" stroke="white" stroke-width="2"/>`;
+    // Value label above dot
+    const labelY = y-12;
+    svg.innerHTML+=`<text x="${x}" y="${labelY}" text-anchor="middle" font-size="10" font-weight="800" fill="${color}">${d.val.toFixed(3)}€</text>`;
+    // Year label below axis
+    svg.innerHTML+=`<text x="${x}" y="${H-PB+16}" text-anchor="middle" font-size="11" fill="${isLast?'#B91C1C':'#6B7280'}" font-weight="${isLast?'700':'400'}">${d.year}</text>`;
+  });
+
+  // +80% annotation
+  const x0=xOf(0), xN=xOf(data.length-1), y0=yOf(data[0].val), yN=yOf(last.val);
+  svg.innerHTML+=`<line x1="${x0}" y1="${y0}" x2="${xN}" y2="${yN}" stroke="#EAB308" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6"/>`;
+  svg.innerHTML+=`<rect x="${(x0+xN)/2-22}" y="${(y0+yN)/2-14}" width="44" height="20" rx="10" fill="#EAB308"/>`;
+  svg.innerHTML+=`<text x="${(x0+xN)/2}" y="${(y0+yN)/2}" text-anchor="middle" dominant-baseline="middle" font-size="11" font-weight="800" fill="white">+80%</text>`;
+})();
+
+// ── Simulator
+function calcSim(){
+  const bill  = parseInt(document.getElementById('sl-bill').value);
+  const roof  = parseInt(document.getElementById('sl-roof').value);
+  const sun   = parseFloat(document.getElementById('sl-sun').value);
+  const raise = parseFloat(document.getElementById('sl-raise').value);
+
+  document.getElementById('sv-bill').textContent = bill+'€';
+  document.getElementById('sv-roof').textContent = roof+' m²';
+
+  const monthly = Math.round(bill * sun);
+  const annual  = monthly*12;
+
+  let tot10=0, tot25=0, cur=annual;
+  for(let i=0;i<25;i++){
+    if(i<10) tot10+=cur;
+    tot25+=cur;
+    cur=Math.round(cur*(1+raise));
+  }
+
+  document.getElementById('r-monthly').textContent = '-'+monthly+'€';
+  document.getElementById('r-annual').textContent  = annual.toLocaleString('fr-FR')+'€';
+  document.getElementById('r-10y').textContent     = tot10.toLocaleString('fr-FR')+'€';
+  document.getElementById('r-25y').textContent     = tot25.toLocaleString('fr-FR')+'€';
+}
+calcSim();
+
+// ── Form submit
+function submitForm(e){
+  e.preventDefault();
+  document.getElementById('form-content').style.display='none';
+  const s = document.getElementById('success-msg');
+  s.style.display='block';
+  document.querySelector('.form-card').scrollIntoView({behavior:'smooth',block:'center'});
+}
+</script>
+</body>
+</html>

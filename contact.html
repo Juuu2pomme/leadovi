@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Contact & Devis — LEADOVI</title>
+<link rel="stylesheet" href="style.css"/>
+<style>
+.contact-layout{display:grid;grid-template-columns:1fr 420px;gap:40px;max-width:1100px;margin:60px auto 0;padding:0 24px}
+@media(max-width:900px){.contact-layout{grid-template-columns:1fr}}
+.form-card{background:var(--card);border:1px solid var(--border);border-radius:22px;padding:38px 36px;position:relative;overflow:hidden}
+.form-card::before{content:'';position:absolute;top:-1px;left:0;right:0;height:3px;background:linear-gradient(90deg,#5B47FB,#47D5FB,#FB8B47)}
+.form-card h2{font-size:22px;font-weight:900;margin-bottom:6px}
+.form-card .sub{font-size:13px;color:var(--gray2);margin-bottom:28px;line-height:1.6}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:560px){.form-row{grid-template-columns:1fr}}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:12px;font-weight:700;color:var(--gray2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.form-group input,.form-group select,.form-group textarea{
+  width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:10px;
+  padding:12px 15px;color:var(--text);font-size:14px;font-family:inherit;
+  transition:border-color .2s,box-shadow .2s;box-sizing:border-box
+}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{
+  outline:none;border-color:var(--indigo);box-shadow:0 0 0 3px rgba(91,71,251,.15)
+}
+.form-group textarea{resize:vertical;min-height:110px}
+.form-group select option{background:var(--bg3);color:var(--text)}
+.vol-opts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px}
+.vol-opt{position:relative}
+.vol-opt input[type=radio]{position:absolute;opacity:0;width:0;height:0}
+.vol-opt label{
+  display:block;background:var(--bg3);border:1px solid var(--border);border-radius:9px;
+  padding:10px 12px;cursor:pointer;font-size:12px;font-weight:600;color:var(--gray2);
+  transition:all .2s;text-align:center
+}
+.vol-opt input:checked + label{background:rgba(91,71,251,.15);border-color:var(--indigo);color:var(--indigo)}
+.vol-opt label:hover{border-color:var(--border2);color:var(--text)}
+.rgpd-check{display:flex;align-items:flex-start;gap:10px;padding:14px;background:rgba(91,71,251,.06);border-radius:10px;margin-bottom:20px}
+.rgpd-check input{flex-shrink:0;margin-top:2px;accent-color:var(--indigo)}
+.rgpd-check p{font-size:11px;color:var(--gray);line-height:1.6;margin:0}
+.submit-btn{width:100%;padding:15px;background:linear-gradient(135deg,var(--indigo),var(--indigo2));color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:800;cursor:pointer;letter-spacing:.3px;transition:all .25s;font-family:inherit}
+.submit-btn:hover{transform:translateY(-1px);box-shadow:0 8px 30px rgba(91,71,251,.4)}
+.submit-note{text-align:center;font-size:11px;color:var(--gray);margin-top:10px}
+/* Success state */
+#form-success{display:none;text-align:center;padding:40px 20px}
+.success-icon{font-size:56px;margin-bottom:16px}
+#form-success h3{font-size:22px;font-weight:900;margin-bottom:8px}
+#form-success p{font-size:14px;color:var(--gray2);line-height:1.7}
+/* Sidebar */
+.contact-sidebar{}
+.side-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:28px;margin-bottom:18px}
+.side-card h4{font-size:15px;font-weight:800;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.contact-item{display:flex;align-items:flex-start;gap:12px;margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--border)}
+.contact-item:last-child{margin-bottom:0;padding-bottom:0;border:none}
+.ci-icon{width:38px;height:38px;border-radius:10px;background:rgba(91,71,251,.12);color:var(--indigo);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.ci-label{font-size:11px;color:var(--gray);margin-bottom:2px}
+.ci-val{font-size:14px;font-weight:700;color:var(--text)}
+.guarantee-item{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid rgba(91,71,251,.07)}
+.guarantee-item:last-child{border:none}
+.gi-dot{width:8px;height:8px;border-radius:50%;background:var(--indigo);flex-shrink:0}
+.guarantee-item span{font-size:13px;color:var(--gray2)}
+.guarantee-item strong{color:var(--text)}
+.faq-item{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid rgba(91,71,251,.07)}
+.faq-item:last-child{border:none;margin-bottom:0;padding-bottom:0}
+.faq-q{font-size:13px;font-weight:700;margin-bottom:5px;color:var(--text)}
+.faq-a{font-size:12px;color:var(--gray2);line-height:1.6}
+</style>
+</head>
+<body>
+<canvas id="canvas-bg"></canvas>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo"><div class="nav-logo-icon">⚡</div>LEAD<span>OVI</span></a>
+  <div class="nav-menu">
+    <a href="index.html">Accueil</a>
+    <div class="nav-dropdown">
+      <a href="#">Nos leads ▾</a>
+      <div class="dropdown-menu">
+        <a href="pv-solaire.html" class="dropdown-item"><div class="di-icon" style="background:rgba(255,214,10,0.12)">☀️</div>Panneaux PV Solaires</a>
+        <a href="pac.html" class="dropdown-item"><div class="di-icon" style="background:rgba(71,213,251,0.1)">🌡️</div>Pompe à Chaleur</a>
+        <a href="isolation.html" class="dropdown-item"><div class="di-icon" style="background:rgba(91,71,251,0.12)">🏠</div>Isolation</a>
+        <a href="renovation.html" class="dropdown-item"><div class="di-icon" style="background:rgba(46,213,115,0.1)">🔨</div>Rénovation Énergétique</a>
+        <a href="fenetres.html" class="dropdown-item"><div class="di-icon" style="background:rgba(251,139,71,0.12)">🪟</div>Fenêtres & Menuiseries</a>
+        <a href="pergola.html" class="dropdown-item"><div class="di-icon" style="background:rgba(165,180,252,0.12)">⛺</div>Pergola & Véranda</a>
+      </div>
+    </div>
+    <a href="contact.html" class="active">Contact</a>
+  </div>
+  <div class="nav-right">
+    <div class="nav-status"><div class="pulse"></div>Leads en direct</div>
+    <a href="contact.html" class="btn btn-primary btn-sm">Demander un devis →</a>
+  </div>
+</nav>
+
+<!-- HERO CONTACT -->
+<div style="text-align:center;padding:80px 24px 20px">
+  <div class="section-label" style="display:inline-block;margin-bottom:14px">Demande de devis</div>
+  <h1 style="font-size:clamp(28px,4.5vw,52px);font-weight:900;margin-bottom:14px">Parlez-nous de votre <em style="background:linear-gradient(90deg,#5B47FB,#47D5FB);-webkit-background-clip:text;-webkit-text-fill-color:transparent">projet</em></h1>
+  <p style="font-size:15px;color:var(--gray2);max-width:520px;margin:0 auto;line-height:1.7">Un conseiller LEADOVI vous contacte sous 2 heures pour vous présenter notre offre adaptée à votre volume et vos zones.</p>
+</div>
+
+<!-- CONTACT LAYOUT -->
+<div class="contact-layout">
+
+  <!-- FORM -->
+  <div class="form-card fade-in">
+    <h2>Votre demande</h2>
+    <p class="sub">Remplissez ce formulaire et recevez votre proposition tarifaire personnalisée sous 2 heures ouvrées.</p>
+
+    <form id="leadovi-form" name="contact-pro" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="contact-pro"/>
+      <p hidden><input name="bot-field"/></p>
+      <!-- ENTREPRISE -->
+      <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--indigo);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border)">📁 Votre entreprise</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nom de l'entreprise *</label>
+          <input type="text" name="company" placeholder="SAS Dupont Énergie" required/>
+        </div>
+        <div class="form-group">
+          <label>Forme juridique</label>
+          <select name="legal">
+            <option value="">Sélectionner</option>
+            <option>Auto-entrepreneur</option>
+            <option>SARL / EURL</option>
+            <option>SAS / SASU</option>
+            <option>SA</option>
+            <option>Autre</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>SIRET</label>
+          <input type="text" name="siret" placeholder="12345678900012"/>
+        </div>
+        <div class="form-group">
+          <label>Certifications RGE</label>
+          <select name="rge">
+            <option value="">Sélectionner</option>
+            <option>QualiPV</option>
+            <option>QualiPAC</option>
+            <option>Qualibat</option>
+            <option>RGE Éco-artisan</option>
+            <option>Plusieurs certifications</option>
+            <option>En cours d'obtention</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- CONTACT -->
+      <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--indigo);margin:20px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--border)">👤 Votre contact</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Prénom *</label>
+          <input type="text" name="firstname" placeholder="Jean" required/>
+        </div>
+        <div class="form-group">
+          <label>Nom *</label>
+          <input type="text" name="lastname" placeholder="Dupont" required/>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Téléphone *</label>
+          <input type="tel" name="phone" placeholder="06 12 34 56 78" required/>
+        </div>
+        <div class="form-group">
+          <label>Email professionnel *</label>
+          <input type="email" name="email" placeholder="jean@dupont-energie.fr" required/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Poste / Fonction</label>
+        <input type="text" name="role" placeholder="Gérant, Directeur commercial, etc."/>
+      </div>
+
+      <!-- BESOIN -->
+      <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--indigo);margin:20px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--border)">🎯 Votre besoin en leads</div>
+      <div class="form-group">
+        <label>Secteur(s) d'activité *</label>
+        <select name="sector" required>
+          <option value="">Sélectionner un secteur</option>
+          <option>☀️ PV Solaire</option>
+          <option>🌡️ Pompe à Chaleur</option>
+          <option>🏠 Isolation</option>
+          <option>🔨 Rénovation Énergétique</option>
+          <option>🪟 Fenêtres & Menuiseries</option>
+          <option>⛺ Pergola & Véranda</option>
+          <option>🔀 Plusieurs secteurs</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Quantité de leads souhaitée / mois *</label>
+        <div class="vol-opts">
+          <div class="vol-opt"><input type="radio" name="volume" id="v1" value="50-100"/><label for="v1">50 – 100 leads</label></div>
+          <div class="vol-opt"><input type="radio" name="volume" id="v2" value="100-300"/><label for="v2">100 – 300 leads</label></div>
+          <div class="vol-opt"><input type="radio" name="volume" id="v3" value="300-1000"/><label for="v3">300 – 1 000 leads</label></div>
+          <div class="vol-opt"><input type="radio" name="volume" id="v4" value="1000+"/><label for="v4">1 000+ leads</label></div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Zones géographiques cibles *</label>
+        <select name="zone" required>
+          <option value="">Sélectionner</option>
+          <option>1 département</option>
+          <option>2 à 5 départements</option>
+          <option>Une région complète</option>
+          <option>Plusieurs régions</option>
+          <option>National</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Département(s) / Région(s) souhaité(s)</label>
+        <input type="text" name="depts" placeholder="Ex : 30, 34, 84 ou Occitanie + PACA"/>
+      </div>
+
+      <div class="form-group">
+        <label>Expérience avec des leads externalisés ?</label>
+        <select name="experience">
+          <option value="">Sélectionner</option>
+          <option>Oui, avec Yacla / Edilead / autres</option>
+          <option>Oui, avec d'autres fournisseurs</option>
+          <option>Non, première fois</option>
+          <option>J'avais mon propre système</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Message / Informations complémentaires</label>
+        <textarea name="message" placeholder="Décrivez votre situation, vos attentes, vos critères de qualification spécifiques..."></textarea>
+      </div>
+
+      <div class="rgpd-check">
+        <input type="checkbox" id="rgpd" name="rgpd" required/>
+        <p>J'accepte que mes informations soient traitées par LEADOVI dans le cadre de ma demande de devis. Conformément au RGPD, je dispose d'un droit d'accès, de rectification et de suppression de mes données. Pour en savoir plus, consultez notre <a href="#" style="color:var(--indigo)">politique de confidentialité</a>.</p>
+      </div>
+
+      <button type="submit" class="submit-btn">Envoyer ma demande →</button>
+      <p class="submit-note">🔒 Données sécurisées — Réponse sous 2 heures ouvrées</p>
+    </form>
+
+    <!-- SUCCESS -->
+    <div id="form-success">
+      <div class="success-icon">✅</div>
+      <h3 style="color:var(--text)">Demande envoyée !</h3>
+      <p>Un conseiller LEADOVI vous contacte sous <strong>2 heures</strong> pour vous présenter votre offre personnalisée.</p>
+      <div style="margin-top:24px;padding:16px;background:rgba(91,71,251,.08);border-radius:12px;border:1px solid rgba(91,71,251,.2)">
+        <p style="font-size:13px;color:var(--gray2);margin:0">En attendant, vous pouvez explorer nos pages secteurs pour mieux comprendre la qualité de nos leads.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="contact-sidebar fade-in">
+    <div class="side-card">
+      <h4>📞 Nous contacter directement</h4>
+      <div class="contact-item">
+        <div class="ci-icon">📞</div>
+        <div><div class="ci-label">Téléphone</div><div class="ci-val">+33 (0)4 XX XX XX XX</div></div>
+      </div>
+      <div class="contact-item">
+        <div class="ci-icon">✉️</div>
+        <div><div class="ci-label">Email</div><div class="ci-val">contact@leadovi.fr</div></div>
+      </div>
+      <div class="contact-item">
+        <div class="ci-icon">⏰</div>
+        <div><div class="ci-label">Disponibilité</div><div class="ci-val">Lun – Ven : 8h – 19h<br><span style="font-size:12px;color:var(--gray)">Sam : 9h – 13h</span></div></div>
+      </div>
+      <div class="contact-item" style="border:none;margin-bottom:0;padding-bottom:0">
+        <div class="ci-icon">📍</div>
+        <div><div class="ci-label">Siège social</div><div class="ci-val">France — Opérations nationales</div></div>
+      </div>
+    </div>
+
+    <div class="side-card">
+      <h4>✅ Nos engagements</h4>
+      <div class="guarantee-item"><div class="gi-dot"></div><span><strong>Leads 100% exclusifs</strong> — jamais revendus</span></div>
+      <div class="guarantee-item"><div class="gi-dot"></div><span><strong>Livraison en temps réel</strong> — &lt; 60 secondes</span></div>
+      <div class="guarantee-item"><div class="gi-dot"></div><span><strong>Remplacement garanti</strong> des leads invalides</span></div>
+      <div class="guarantee-item"><div class="gi-dot"></div><span><strong>Sans engagement</strong> de durée</span></div>
+      <div class="guarantee-item"><div class="gi-dot"></div><span><strong>Account manager</strong> dédié inclus</span></div>
+      <div class="guarantee-item"><div class="gi-dot" style="background:var(--orange)"></div><span><strong>Tarifs sur devis</strong> — personnalisés à votre volume</span></div>
+    </div>
+
+    <div class="side-card">
+      <h4>❓ Questions fréquentes</h4>
+      <div class="faq-item">
+        <div class="faq-q">Combien de temps pour recevoir mon premier lead ?</div>
+        <div class="faq-a">Votre compte est activé en moins de 2h après validation. Les premiers leads arrivent dès l'activation.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Les leads sont-ils vraiment exclusifs ?</div>
+        <div class="faq-a">Oui, chaque lead n'est transmis qu'à un seul installateur dans votre zone. Jamais partagé.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Puis-je changer de secteur ou de zone ?</div>
+        <div class="faq-a">Oui, votre conseiller peut ajuster vos critères à tout moment.</div>
+      </div>
+      <div class="faq-item" style="border:none;margin:0;padding:0">
+        <div class="faq-q">Que faire si un lead est invalide ?</div>
+        <div class="faq-a">Signalez-le dans votre espace client — il est remplacé sans justification ni délai.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="padding-bottom:60px"></div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand"><div class="fl">LEAD<span>OVI</span></div><p>La plateforme de leads qualifiés pour les professionnels de l'énergie et de l'habitat.</p></div>
+      <div class="footer-col"><h5>Nos leads</h5><a href="pv-solaire.html">PV Solaire</a><a href="pac.html">Pompe à Chaleur</a><a href="isolation.html">Isolation</a><a href="renovation.html">Rénovation</a><a href="fenetres.html">Fenêtres</a><a href="pergola.html">Pergola</a></div>
+      <div class="footer-col"><h5>Entreprise</h5><a href="contact.html">Contact</a><a href="#">À propos</a><a href="#">Blog</a></div>
+      <div class="footer-col"><h5>Légal</h5><a href="#">Mentions légales</a><a href="#">CGV</a><a href="#">RGPD</a><a href="#">Politique cookies</a></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 LEADOVI — Tous droits réservés</span><span>Plateforme réservée aux professionnels RGE</span></div>
+  </div>
+</footer>
+<script src="components.js"></script>
+</body>
+</html>
