@@ -71,12 +71,29 @@ function initCounters(){
   els.forEach(el=>io.observe(el));
 }
 
-// ── Fade in on scroll
+// ── Fade in on scroll (robuste : jamais de contenu bloqué invisible)
 function initFade(){
+  const els = [...document.querySelectorAll('.fade-in')];
+  if(!els.length) return;
+  const reveal = el => el.classList.add('visible');
+  if(!('IntersectionObserver' in window)){ els.forEach(reveal); return; }
   const io = new IntersectionObserver(entries=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); }});
-  },{threshold:.1});
-  document.querySelectorAll('.fade-in').forEach(el=>io.observe(el));
+    entries.forEach(e=>{ if(e.isIntersecting){ reveal(e.target); io.unobserve(e.target); }});
+  },{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+  els.forEach(el=>io.observe(el));
+  // Filet : tout élément dont le haut est entré dans le viewport est révélé,
+  // même en scroll rapide (l'observer peut manquer un flick).
+  const sweep = () => {
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    for(const el of els){
+      if(el.classList.contains('visible')) continue;
+      if(el.getBoundingClientRect().top < vh){ reveal(el); io.unobserve(el); }
+    }
+  };
+  window.addEventListener('scroll', sweep, {passive:true});
+  window.addEventListener('resize', sweep);
+  sweep();
+  setTimeout(sweep, 1500);
 }
 
 // ── Active nav link
@@ -177,7 +194,51 @@ function initDashboard(){
   setInterval(addLead, 4200);
 }
 
+// ── Mobile nav (hamburger + menu) — injecté sur toutes les pages
+function initMobileNav(){
+  const nav = document.querySelector('.nav');
+  if(!nav || document.querySelector('.nav-burger')) return;
+  const current = window.location.pathname.split('/').pop() || 'index.html';
+  const links = [
+    ['index.html','Accueil'],
+    ['__label__','Nos leads'],
+    ['pv-solaire.html','☀️ PV Solaire'],
+    ['pac.html','🌡️ Pompe à Chaleur'],
+    ['isolation.html','🏠 Isolation'],
+    ['renovation.html','🔨 Rénovation Énergétique'],
+    ['fenetres.html','🪟 Fenêtres & Menuiseries'],
+    ['pergola.html','⛺ Pergola & Véranda'],
+    ['contact.html','Contact'],
+  ];
+  const burger = document.createElement('button');
+  burger.className = 'nav-burger';
+  burger.setAttribute('aria-label','Ouvrir le menu');
+  burger.innerHTML = '<span></span><span></span><span></span>';
+  const menu = document.createElement('nav');
+  menu.className = 'mobile-menu';
+  menu.innerHTML = links.map(([href,label]) =>
+    href === '__label__'
+      ? `<div class="mm-label">${label}</div>`
+      : `<a href="${href}"${href === current ? ' class="active"' : ''}>${label}</a>`
+  ).join('') + '<a href="contact.html" class="mm-cta">Demander un devis →</a>';
+  const close = () => { burger.classList.remove('open'); menu.classList.remove('open'); document.body.style.overflow=''; };
+  const toggle = () => { const open = !menu.classList.contains('open'); burger.classList.toggle('open',open); menu.classList.toggle('open',open); document.body.style.overflow = open ? 'hidden' : ''; };
+  burger.addEventListener('click', toggle);
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+  document.addEventListener('keydown', e => { if(e.key === 'Escape') close(); });
+  (nav.querySelector('.nav-right') || nav).appendChild(burger);
+  document.body.appendChild(menu);
+}
+
+// ── Favicon — injecté sur toutes les pages (progressive enhancement)
+function initFavicon(){
+  if(document.querySelector('link[rel="icon"][type="image/svg+xml"]')) return;
+  const add = (rel,type,href) => { const l=document.createElement('link'); l.rel=rel; if(type)l.type=type; l.href=href; document.head.appendChild(l); };
+  add('icon','image/svg+xml','/favicon.svg');
+  add('apple-touch-icon',null,'/apple-touch-icon.png');
+}
+
 // ── INIT ALL
 document.addEventListener('DOMContentLoaded',()=>{
-  initCanvas(); initCounters(); initFade(); initNav(); initTicker(); initForm(); initDashboard();
+  initCanvas(); initCounters(); initFade(); initNav(); initMobileNav(); initFavicon(); initTicker(); initForm(); initDashboard();
 });
